@@ -1,0 +1,22 @@
+<div *ngIf="showMsg"> 
+    <p *ngFor="let msg of messages">
+        {{msg}} 
+    </p>
+</div>
+
+<form #productForm="ngForm">
+    <input type="text" name="proId" id="proId" #proId placeholder="proId" [(ngModel)]="product.proId"/><br/>
+    <input type="text" name="detail" id="detail" #detail placeholder="detail" [(ngModel)]="product.detail"/><br/>
+    <input type="text" name="image" id="image" #image placeholder="image" [(ngModel)]="product.image"/><br/>
+    <input type="text" name="name" id="name" #name placeholder="name" [(ngModel)]="product.name"/><br/>
+    <input type="number" name="price" id="price" #price placeholder="price" [(ngModel)]="product.price"/><br/>
+
+    <select name="enable" id="enable" #enable [(ngModel)]="product.enable">
+        <option *ngFor="let enable of enables" [value]="enable.id">
+            {{enable.name}}
+        </option>
+    </select>
+    <br/>
+    <button (click)="save()">save</button>
+    <button routerLink="/product-list">cancel</button>
+</form>

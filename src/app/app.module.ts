@@ -10,6 +10,10 @@ import { PaymentMethodListComponent } from './component/payment-method-list/paym
 import { CustomerSaveComponent } from './component/customer-save/customer-save.component';
 import {FormsModule} from '@angular/forms';
 import { CustomerEditComponent } from './component/customer-edit/customer-edit.component';
+import { ProductSaveComponent } from './component/product-save/product-save.component';
+import { PaymentMethodSaveComponent } from './component/payment-method-save/payment-method-save.component';
+import { PaymentMethodEditComponent } from './component/payment-method-edit/payment-method-edit.component';
+import { ProductEditComponent } from './component/product-edit/product-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +21,11 @@ import { CustomerEditComponent } from './component/customer-edit/customer-edit.c
     ProductListComponent,
     PaymentMethodListComponent,
     CustomerSaveComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    ProductSaveComponent,
+    PaymentMethodSaveComponent,
+    PaymentMethodEditComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

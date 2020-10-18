@@ -3,11 +3,15 @@
     <tr>
         <td>proId</td>
         <td>Name</td>
+        <td>Opciones</td>
     </tr>
 
     <tr *ngFor="let product of products">
         <td>{{product.proId}}</td>
         <td>{{product.name}}</td>
+        <td>
+            <a [routerLink]="['/product-edit', product.proId]" >editar</a>
+        </td>
         
 
     </tr>

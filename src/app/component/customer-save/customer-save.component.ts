@@ -17,6 +17,7 @@ export class CustomerSaveComponent implements OnInit {
 
   public showMsg:boolean=false;
   public messages:string[]=[""];
+  
 
   constructor(public customerService:CustomerService,
     public enableService:EnableService) { }

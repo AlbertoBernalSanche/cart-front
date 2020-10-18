@@ -3,11 +3,15 @@
     <tr>
         <td>payId</td>
         <td>Name</td>
+        <td>Opciones</td>
     </tr>
 
     <tr *ngFor="let paymentMethod of paymentMethods">
         <td>{{paymentMethod.payId}}</td>
         <td>{{paymentMethod.name}}</td>
+        <td>
+            <a [routerLink]="['/payment-method-edit', paymentMethod.payId]" >editar</a>
+        </td>
         
 
     </tr>
