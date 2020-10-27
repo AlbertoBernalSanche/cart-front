@@ -1,4 +1,11 @@
 <h3>{{titulo}}</h3>
+
+<div *ngIf="showMsg"> 
+    <p *ngFor="let msg of messages">
+        {{msg}} 
+    </p>
+</div>
+
 <table border="1">
     <tr>
         <td>Email</td>
@@ -12,6 +19,7 @@
         <td>{{customer.name}}</td>
         <td>
             <a [routerLink]="['/customer-edit', customer.email]" >editar</a>
+            <button (click)="delete(customer.email)">Borrar</button>
         </td>
     </tr>
 
