@@ -117,8 +117,13 @@
               "devServerTarget": "cart-front:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "cart-front"
 }
