@@ -337,6 +337,7 @@
     </svg>
 
   </div>
+<div *ngIf="isAuth()">
   <a routerLink="/customer-list">Customer List</a>
   <br/>
   <a routerLink="/customer-save">Customer Save</a>
@@ -348,4 +349,5 @@
   <a routerLink="/payment-method-list">Payment Method List</a>
   <br/>
   <a routerLink="/payment-method-save">Payment Method Save</a>
-<router-outlet></router-outlet>
+</div>
+  <router-outlet></router-outlet>

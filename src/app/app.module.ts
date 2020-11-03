@@ -14,6 +14,7 @@ import { ProductSaveComponent } from './component/product-save/product-save.comp
 import { PaymentMethodSaveComponent } from './component/payment-method-save/payment-method-save.component';
 import { PaymentMethodEditComponent } from './component/payment-method-edit/payment-method-edit.component';
 import { ProductEditComponent } from './component/product-edit/product-edit.component';
+import { LoginComponent } from './component/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { ProductEditComponent } from './component/product-edit/product-edit.comp
     ProductSaveComponent,
     PaymentMethodSaveComponent,
     PaymentMethodEditComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

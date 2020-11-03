@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cart-front';
+
+  public isAuth():boolean{
+    return !!localStorage.getItem('usuario');
+  }
 }
