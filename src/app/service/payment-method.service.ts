@@ -25,12 +25,12 @@ export class PaymentMethodService {
     return this.httpClient.get(this.url+'findAll',{headers:headers});
   }
 
-  public findById(payId:string):Observable<any>{
+  public findById(payId:number):Observable<any>{
     let headers=this.createTokenHeader();
     return this.httpClient.get(this.url+'findById/'+payId,{headers:headers});
   }
 
-  public delete(payId:string):Observable<any>{
+  public delete(payId:number):Observable<any>{
     let headers=this.createTokenHeader();
     return this.httpClient.delete(this.url+'delete/'+payId,{headers:headers});
   }

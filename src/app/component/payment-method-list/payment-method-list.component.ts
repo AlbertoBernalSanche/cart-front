@@ -10,7 +10,8 @@ import { PaymentMethodService } from 'src/app/service/payment-method.service';
 export class PaymentMethodListComponent implements OnInit {
 
   public titulo:string='lista de metodos de pago';
-
+  public showMsg:boolean=false;
+  public messages:string[]=[""];
   public paymentMethods:PaymentMethod[];
 
   constructor(public paymentMethodService:PaymentMethodService) { }
@@ -25,6 +26,20 @@ export class PaymentMethodListComponent implements OnInit {
     },error=>{
       
       console.error(error);
+    });
+  }
+
+  public delete(payId:number){
+    this.messages=[""]
+    this.paymentMethodService.delete(payId).subscribe(ok=>{
+      this.showMsg=true;
+      this.messages[0]="el paymentMethod se borro con exito";
+      this.findAll();
+    },err=>{
+      console.log(err);
+      this.showMsg=true;
+      this.messages=err.error.error;
+      
     });
   }
 

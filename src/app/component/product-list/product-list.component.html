@@ -11,6 +11,7 @@
         <td>{{product.name}}</td>
         <td>
             <a [routerLink]="['/product-edit', product.proId]" >editar</a>
+            <button (click)="delete(product.proId)">Borrar</button>
         </td>
         
 

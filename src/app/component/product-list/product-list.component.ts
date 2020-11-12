@@ -13,6 +13,10 @@ export class ProductListComponent implements OnInit {
   
   public products:Product[];
 
+
+  public showMsg:boolean=false;
+  public messages:string[]=[""];
+
   constructor(public productService:ProductService) { }
 
 
@@ -30,4 +34,18 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+
+  public delete(proId:string){
+    this.messages=[""]
+    this.productService.delete(proId).subscribe(ok=>{
+      this.showMsg=true;
+      this.messages[0]="el product se borro con exito";
+      this.findAll();
+    },err=>{
+      console.log(err);
+      this.showMsg=true;
+      this.messages=err.error.error;
+      
+    });
+  }
 }
