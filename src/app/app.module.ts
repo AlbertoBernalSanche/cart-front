@@ -15,6 +15,7 @@ import { PaymentMethodSaveComponent } from './component/payment-method-save/paym
 import { PaymentMethodEditComponent } from './component/payment-method-edit/payment-method-edit.component';
 import { ProductEditComponent } from './component/product-edit/product-edit.component';
 import { LoginComponent } from './component/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { LoginComponent } from './component/login/login.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

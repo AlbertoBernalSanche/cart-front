@@ -6,15 +6,17 @@
     </p>
 </div>
 
-<table border="1">
+<table class="table table-bordered">
+    
     <tr>
         <td>Email</td>
         <td>Name</td>
         <td>Opciones</td>
         
     </tr>
-
+    
     <tr *ngFor="let customer of customers">
+       
         <td>{{customer.email}}</td>
         <td>{{customer.name}}</td>
         <td>
@@ -23,5 +25,5 @@
         </td>
     </tr>
 
-
+  
 </table>
