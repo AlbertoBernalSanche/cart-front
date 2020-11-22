@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/domain/customer';
 import { Enable } from 'src/app/domain/enable';
+import { Tipo } from 'src/app/domain/tipo';
 import { CustomerService } from 'src/app/service/customer.service';
 import { EnableService } from 'src/app/service/enable.service';
+import { TipoService } from 'src/app/service/tipo.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -15,13 +17,15 @@ export class CustomerEditComponent implements OnInit {
   public email:string;
   public customer:Customer;
   public enables:Enable[];
+  public tipos:Tipo[];
   public showMsg:boolean=false;
   public messages:string[]=[""];
 
   constructor(public router:Router,
     public activatedRoute:ActivatedRoute,
     public customerService:CustomerService,
-    public enableService:EnableService
+    public enableService:EnableService,
+    public tipoService:TipoService
     ) { }
 
   ngOnInit(): void {
@@ -29,6 +33,7 @@ export class CustomerEditComponent implements OnInit {
     this.email=params.email;
     this.findById();
     this.findAllEnable();
+    this.findAllTipo();
   }
 
   public findById():void{
@@ -41,6 +46,10 @@ export class CustomerEditComponent implements OnInit {
 
   public findAllEnable():void{
     this.enables=this.enableService.findAll();
+  }
+
+  public findAllTipo():void{
+    this.tipos=this.tipoService.findAll();
   }
 
   public update(){

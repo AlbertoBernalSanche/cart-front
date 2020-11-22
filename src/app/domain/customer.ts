@@ -6,5 +6,6 @@ export class Customer {
         public name:string,
         public phone:string,
         public token:string,
+        public tipo:string
     ){}
 }

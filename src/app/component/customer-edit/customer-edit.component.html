@@ -17,6 +17,11 @@
                 {{enable.name}}
             </option>
         </select>
+        <select name="tipo" id="tipo" #tipo [(ngModel)]="customer.tipo">
+            <option *ngFor="let tipo of tipos" [value]="tipo.id">
+                {{tipo.name}}
+            </option>
+        </select>
         <br/>
         <button (click)="update()">edit</button>
         <button (click)="delete()">delete</button>

@@ -7,9 +7,11 @@ import { LoginComponent } from './component/login/login.component';
 import { PaymentMethodEditComponent } from './component/payment-method-edit/payment-method-edit.component';
 import { PaymentMethodListComponent } from './component/payment-method-list/payment-method-list.component';
 import { PaymentMethodSaveComponent } from './component/payment-method-save/payment-method-save.component';
+import { ProductCartComponent } from './component/product-cart/product-cart.component';
 import { ProductEditComponent } from './component/product-edit/product-edit.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
 import { ProductSaveComponent } from './component/product-save/product-save.component';
+import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path:'payment-method-save',component:PaymentMethodSaveComponent,canActivate:[AuthGuard]},
   {path:'customer-save',component:CustomerSaveComponent,canActivate:[AuthGuard]},
   {path:'customer-edit/:email',component:CustomerEditComponent,canActivate:[AuthGuard]},
+  {path:'product-cart',component:ProductCartComponent,canActivate:[AuthGuard]},
+  {path:'shopping-cart',component:ShoppingCartComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'',component:LoginComponent}
 ];
