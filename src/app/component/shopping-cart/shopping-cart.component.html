@@ -1,22 +1,20 @@
 <table class="table table-bordered">
-    
-    <button (click)="cleanCart()">limpiar carro</button>
-    <br/>
     <tr>
-        
-        <td>proId</td>
-        <td>quantity</td>
+        <td>carId</td>
+        <td>email</td>
+        <td>items</td>
         <td>total</td>
         <td>opciones</td>
     </tr>
 
-    <tr *ngFor="let shoppinProduct of shoppingProducts">
-        
-        <td>{{shoppinProduct.productId}}</td>
-        <td>{{shoppinProduct.quantity}}</td>
-        <td>{{shoppinProduct.total}}</td>
+    <tr *ngFor="let shoppingCart of shoppingCarts">
+        <td>{{shoppingCart.carId}}</td>
+        <td>{{shoppingCart.email}}</td>
+        <td>{{shoppingCart.items}}</td>
+        <td>{{shoppingCart.total}}</td>
         <td>
-            <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)">Borrar</button>
+            <a [routerLink]="['/shoppin-product', shoppingCart.carId]" >ver carrito</a>
+            
         </td>
         
 

@@ -1,0 +1,14 @@
+<div *ngIf="showMsg"> 
+  <p *ngFor="let msg of messages">
+      {{msg}} 
+  </p>
+</div>
+<div>
+  <input [(ngModel)]="email"      placeholder="Email"     type="text"/><br/>
+  <input [(ngModel)]="password"   placeholder="Password"  type="password"/><br/>
+  <input [(ngModel)]="name"   placeholder="name"  type="text"/><br/>
+  <input [(ngModel)]="address"   placeholder="address"  type="text"/><br/>
+  <input [(ngModel)]="phone"   placeholder="phone"  type="text"/><br/>
+  <button (click)="register()">Registar</button>
+  <button routerLink="/login" >Cancelar</button>
+</div>

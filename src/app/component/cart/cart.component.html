@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+    
+    <button (click)="cleanCart()">limpiar carro</button>
+    <br/>
+    <tr>
+        
+        <td>proId</td>
+        <td>quantity</td>
+        <td>total</td>
+        <td>opciones</td>
+    </tr>
+
+    <tr *ngFor="let shoppinProduct of shoppingProducts">
+        
+        <td>{{shoppinProduct.productId}}</td>
+        <td>{{shoppinProduct.quantity}}</td>
+        <td>{{shoppinProduct.total}}</td>
+        <td>
+            <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)">Borrar</button>
+        </td>
+        
+
+    </tr>
+
+</table>

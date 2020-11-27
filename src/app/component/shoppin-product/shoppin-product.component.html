@@ -1,0 +1,15 @@
+<table class="table table-bordered">
+    <tr>
+        <td>productId</td>
+        <td>quantity</td>    
+        <td>total</td>
+    </tr>
+
+    <tr *ngFor="let shoppingProduct of shoppingProducts">
+        <td>{{shoppingProduct.productId}}</td>
+        <td>{{shoppingProduct.quantity}}</td>
+        <td>{{shoppingProduct.total}}</td>
+    </tr>
+    <button routerLink="/shopping-cart">salir</button>
+
+</table>

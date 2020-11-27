@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppinProduct } from 'src/app/domain/shoppin-product';
+import { ShoppingCart } from 'src/app/domain/shopping-cart';
 import { CartService } from 'src/app/service/cart.service';
-import { RemoveProduct } from 'src/app/domain/remove-product';
-import { CleanCart } from 'src/app/domain/clean-cart';
+import { ShoppingCartService } from 'src/app/service/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,26 +10,22 @@ import { CleanCart } from 'src/app/domain/clean-cart';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  public carId:number=15;
   public showMsg:boolean=false;
   public messages:string[]=[""];
-  public shoppingProducts:ShoppinProduct[];
-  public remove:RemoveProduct;
-  public clean:CleanCart;
-
+  public shoppingCarts:ShoppingCart[];
   constructor(
+    public shoppingCartService:ShoppingCartService,
     public cartService:CartService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
-    this.findShoppingProductsByShoppingCart();
+    this.findAll();
   }
 
-  public findShoppingProductsByShoppingCart():void{
-
-    this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
-      this.shoppingProducts=data;
+  findAll():void{
+    this.shoppingCartService.findAll().subscribe(data=>{
+      this.shoppingCarts=data;
 
     },error=>{
       
@@ -38,36 +33,5 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  public cleanCart():void{
-
-    this.clean=new CleanCart(this.carId);
-
-    this.cartService.cleanCart(this.clean).subscribe(ok=>{
-      this.showMsg=true;
-      this.messages[0]="el carro se limpio con exito";
-      this.findShoppingProductsByShoppingCart();
-    },err=>{
-      console.log(err);
-      this.showMsg=true;
-      this.messages=err.error.error;
-      
-    });
-  }
-
-  public removeProduct(carId:number,proId:string):void{
-
-    this.remove=new RemoveProduct(carId,proId);
-    this.cartService.removeProduct(this.remove).subscribe(ok=>{
-      this.showMsg=true;
-      this.messages[0]="el product se removio con exito";
-      this.findShoppingProductsByShoppingCart();
-    },err=>{
-      console.log(err);
-      this.showMsg=true;
-      this.messages=err.error.error;
-      
-    });
-
-  }
-
+  
 }

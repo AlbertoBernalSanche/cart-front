@@ -1,0 +1,13 @@
+
+<div>
+    <form #shoppingCartForm="ngForm">
+        <select name="payId" id="payId" #payId [(ngModel)]="shoppingCart.payId">
+            <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.payId">
+                {{paymentMethod.name}}
+            </option>
+        </select>
+        <br/>
+        <button (click)="addPaymentMethod()">pagar</button>
+    </form>
+
+</div>  

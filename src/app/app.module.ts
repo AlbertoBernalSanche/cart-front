@@ -18,6 +18,13 @@ import { LoginComponent } from './component/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductCartComponent } from './component/product-cart/product-cart.component';
 import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
+import { AddPaymentMethodComponent } from './component/add-payment-method/add-payment-method.component';
+import { CartComponent } from './component/cart/cart.component';
+import { ShoppinProductComponent } from './component/shoppin-product/shoppin-product.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { RegisterComponent } from './component/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +39,19 @@ import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.c
     ProductEditComponent,
     LoginComponent,
     ProductCartComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    AddPaymentMethodComponent,
+    CartComponent,
+    ShoppinProductComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     NgbModule
   ],
   providers: [],

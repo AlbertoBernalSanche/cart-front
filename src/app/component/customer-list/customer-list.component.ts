@@ -12,7 +12,7 @@ export class CustomerListComponent implements OnInit {
   public titulo:string='Lista de clientes';
   public customers:Customer[];
   public showMsg:boolean=false;
-  public messages:string[]=[""];
+  public messages:string[]=[" "];
 
   constructor(public customerService:CustomerService) { }
 
@@ -24,9 +24,11 @@ export class CustomerListComponent implements OnInit {
     this.customerService.findAll().subscribe(data=>{
       this.customers=data;
 
-    },error=>{
-      
-      console.error(error);
+    },err=>{
+      console.log(err);
+      this.showMsg=true;
+      this.messages=err.messages;
+      //console.error(err);
     });
   }
 

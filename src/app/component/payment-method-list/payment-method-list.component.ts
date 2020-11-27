@@ -19,6 +19,7 @@ export class PaymentMethodListComponent implements OnInit {
   ngOnInit(): void {
     this.findAll();
   }
+  
   findAll():void{
     this.paymentMethodService.findAll().subscribe(data=>{
       this.paymentMethods=data;

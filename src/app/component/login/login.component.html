@@ -1,24 +1,12 @@
-<div *ngIf="showMsg"> 
-    <p *ngFor="let msg of messages">
-        {{msg}} 
-    </p>
-</div>
+<h1>Login User</h1>
+<h3>{{msg}}</h3>
 
-<form #loginForm="ngForm">
-
-    <input type="email" 
-    name="username" 
-    id="username"
-    #username="ngModel"
-    placeholder="UserName"
-    [(ngModel)]="user.username"/><br/>
-
-    <input type="password" 
-    name="password" 
-    id="password"
-    #username="ngModel"
-    placeholder="Password"
-    [(ngModel)]="user.password"/><br/>
-
-    <button (click)="ingresar()">Ingresar</button>
-</form>
+<div>
+    <input [(ngModel)]="email"      placeholder="Email"     type="email"/><br/>
+    <input [(ngModel)]="password"   placeholder="Password"  type="password"/><br/>
+    <button (click)="login()">Sign In</button>
+    <button routerLink="/login" >Cancel</button>
+    <button routerLink="/register" >Register</button>
+    <button routerLink="/reset-password" >Reset password</button>
+   
+  </div>
