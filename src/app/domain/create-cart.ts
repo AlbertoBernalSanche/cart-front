@@ -2,6 +2,6 @@ export class CreateCart {
 
     constructor(
 
-        public email:string,
+        public email:string
     ){}
 }

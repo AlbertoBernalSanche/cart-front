@@ -25,6 +25,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { RegisterComponent } from './component/register/register.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { RegisterComponent } from './component/register/register.component';
     AddPaymentMethodComponent,
     CartComponent,
     ShoppinProductComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

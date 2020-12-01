@@ -299,62 +299,13 @@
 </style>
 
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <nav class="navbar navbar-default">
+<app-navbar></app-navbar>
 
 
 
-    <li class="active"><a href="/login">Home</a></li>
-    <li ><a href="/product-cart">lista de productos</a></li>
-    <li ><a href="/cart">carro de compra</a></li>
-    <li ><a href="/shopping-cart">shopping carts</a></li>
-
-    
-    
-
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Customer
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li><a routerLink="/customer-list">Customer List</a></li>
-      <li><a routerLink="/customer-save">Customer Save</a></li>
-      </div>
-    </li>
-
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Product
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a routerLink="/product-list">Product List</a></li>
-        <li><a routerLink="/product-save">Product Save</a></li>
-      </div>
-    </li>
-
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Payment method
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a routerLink="/payment-method-list">Payment Method List</a></li>
-    <li><a routerLink="/payment-method-save">Payment Method Save</a></li>
-      </div>
-    </li>
-
-
-  </nav>
-
-</div>
 
 <div class="content" role="main">
-
-  <!-- Highlight Card -->
-
-
   <div *ngIf="isAuth()">
   </div>
   <router-outlet></router-outlet>
+</div>

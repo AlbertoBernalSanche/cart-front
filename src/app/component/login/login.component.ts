@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, forwardRef, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/user';
 import { AuthCartService } from 'src/app/service/auth-cart.service';
@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import firebase from 'firebase/app';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Customer } from 'src/app/domain/customer';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -19,15 +20,17 @@ export class LoginComponent implements OnInit {
   public messages: string[] = [""];
   public email: string;
   public password: string;
-  public msg: string = "";
   public token: string = "";
   public customer: Customer;
 
+  
   constructor(
     private router: Router,
     private authService: AuthService,
     public authCartService: AuthCartService,
-    public customerService: CustomerService
+    public customerService: CustomerService,
+    //@Inject(forwardRef(() => NavbarComponent)) private navBar: NavbarComponent
+
 
   ) { }
 
@@ -61,14 +64,22 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("usuario", JSON.stringify(this.user));
           localStorage.setItem("token", data.token);
 
+
           this.customerService.findById(this.email).subscribe(data => {
             this.customer = data;
+            localStorage.setItem("tipo", this.customer.tipo);
+            localStorage.setItem("email",this.customer.email);
+            //this.navBar.updateTipo();
             if (this.customer.tipo == "A") {
-              this.router.navigate(['/product-cart']);
+
+              this.router.navigate(['/customer-list']);
+
 
             } else {
 
-              this.router.navigate(['/customer-list']);
+              this.router.navigate(['/product-cart']);
+
+
             }
 
           }, err => {
@@ -82,13 +93,12 @@ export class LoginComponent implements OnInit {
           console.log(err);
           this.showMsg = true;
           this.messages = err.error.error;
-
         })
       })
       .catch(e => {
         console.log(e);
         this.showMsg = true;
-        this.messages = e.error.error;
+        this.messages = e.messages;
       });
   }
 

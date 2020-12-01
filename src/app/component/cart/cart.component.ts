@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { parse } from 'path';
 import { CleanCart } from 'src/app/domain/clean-cart';
+import { CreateCart } from 'src/app/domain/create-cart';
 import { RemoveProduct } from 'src/app/domain/remove-product';
 import { ShoppinProduct } from 'src/app/domain/shoppin-product';
+import { ShoppingCart } from 'src/app/domain/shopping-cart';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -11,12 +14,15 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  public carId:number=15;
+  public carId:number;
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
   public remove:RemoveProduct;
   public clean:CleanCart;
+  public shoppingCart: ShoppingCart;
+  public email: string;
+  public cart: CreateCart;
 
   constructor(
     public cartService:CartService
@@ -24,10 +30,13 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.carId=Number(localStorage.getItem("cart"));
     this.findShoppingProductsByShoppingCart();
   }
 
   public findShoppingProductsByShoppingCart():void{
+
+    
 
     this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
       this.shoppingProducts=data;
@@ -67,6 +76,31 @@ export class CartComponent implements OnInit {
       this.messages=err.error.error;
       
     });
+
+  }
+
+  public findShoppingCartAvailable(): void {
+    this.email = localStorage.getItem("email");
+    this.cartService.findShoppingCartAvailable(this.email).subscribe(data => {
+      this.shoppingCart = data;
+
+      if (this.shoppingCart==null) {
+        console.log(this.email);
+        this.cart = new CreateCart(this.email);
+        this.cartService.createCart(this.cart);
+  
+      } else {
+        console.log("shoppingCar:" + this.shoppingCart.carId)
+        this.carId = this.shoppingCart.carId;
+        console.log("carId: " + this.carId)
+  
+      }
+
+    }, error => {
+
+      console.error(error);
+    });
+    
 
   }
 

@@ -1,7 +1,7 @@
 
 <div>
     <form #shoppingCartForm="ngForm">
-        <select name="payId" id="payId" #payId [(ngModel)]="shoppingCart.payId">
+        <select name="payId"  [(ngModel)]="payId">
             <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.payId">
                 {{paymentMethod.name}}
             </option>

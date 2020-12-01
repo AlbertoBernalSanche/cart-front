@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+
+    <div *ngIf="tipo=='C'">
+        <button (click)="singOut()">SingOut</button>
+        <li><a routerLink="/product-cart">lista de productos</a></li>
+        <li><a routerLink="/cart">carro de compra</a></li>
+        <li><a routerLink="/add-payment-method">Pagar</a></li>
+
+
+    </div>
+
+    <div *ngIf="tipo==null">
+        <button (click)="singOut()">SingOut</button>
+
+    </div>
+    <div *ngIf="tipo=='A'">
+        <button (click)="singOut()">SingOut</button>
+        <li><a routerLink="/shopping-cart">shopping carts</a></li>
+        <li><a routerLink="/customer-list">Customer List</a></li>
+        <li><a routerLink="/customer-save">Customer Save</a></li>
+        <li><a routerLink="/product-list">Product List</a></li>
+        <li><a routerLink="/product-save">Product Save</a></li>
+        <li><a routerLink="/payment-method-list">Payment Method List</a></li>
+        <li><a routerLink="/payment-method-save">Payment Method Save</a></li>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</nav>
