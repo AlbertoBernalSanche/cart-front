@@ -1,23 +1,32 @@
+<h1>Shopping carts</h1>
+<button [routerLink]="['/customer-list']"  class="btn btn-primary mb-2 btn-lg">Volver</button>
 <table class="table table-bordered">
-    <tr>
-        <td>carId</td>
-        <td>email</td>
-        <td>items</td>
-        <td>total</td>
-        <td>opciones</td>
-    </tr>
+    <thead class="thead-light">
+        <tr>
+            <th>carId</th>
+            <th>email</th>
+            <th>items</th>
+            <th>total</th>
+            <th>opciones</th>
+        </tr>
 
-    <tr *ngFor="let shoppingCart of shoppingCarts">
-        <td>{{shoppingCart.carId}}</td>
-        <td>{{shoppingCart.email}}</td>
-        <td>{{shoppingCart.items}}</td>
-        <td>{{shoppingCart.total}}</td>
-        <td>
-            <a [routerLink]="['/shoppin-product', shoppingCart.carId]" >ver carrito</a>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let shoppingCart of shoppingCarts">
+            <td>{{shoppingCart.carId}}</td>
+            <td>{{shoppingCart.email}}</td>
+            <td>{{shoppingCart.items}}</td>
+            <td>{{shoppingCart.total | currency: 'COP'}}</td>
+            <td>
+                <button [routerLink]="['/shoppin-product', shoppingCart.carId]" class="btn btn-primary mb-2 btn-lg">ver carrito</button>
+                
+            </td>
             
-        </td>
-        
+    
+        </tr>
+    </tbody>
 
-    </tr>
+    
 
 </table>

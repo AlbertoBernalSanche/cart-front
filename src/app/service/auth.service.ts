@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Customer } from '../domain/customer';
 import { User } from '../domain/user';
 
 @Injectable({
@@ -24,4 +25,9 @@ export class AuthService {
   public logOut():void{
     localStorage.removeItem('usuario');
   }
+
+ /* public register(customer:Customer):Observable<any>{
+
+    return this.httpClient.post(this.url+'save',customer);
+  }*/
 }

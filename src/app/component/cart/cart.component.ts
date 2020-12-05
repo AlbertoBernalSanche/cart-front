@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { parse } from 'path';
 import { CleanCart } from 'src/app/domain/clean-cart';
 import { CreateCart } from 'src/app/domain/create-cart';
+import { Product } from 'src/app/domain/product';
 import { RemoveProduct } from 'src/app/domain/remove-product';
 import { ShoppinProduct } from 'src/app/domain/shoppin-product';
 import { ShoppingCart } from 'src/app/domain/shopping-cart';
 import { CartService } from 'src/app/service/cart.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +20,7 @@ export class CartComponent implements OnInit {
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
+  public product:Product;
   public remove:RemoveProduct;
   public clean:CleanCart;
   public shoppingCart: ShoppingCart;
@@ -25,7 +28,8 @@ export class CartComponent implements OnInit {
   public cart: CreateCart;
 
   constructor(
-    public cartService:CartService
+    public cartService:CartService,
+    public productService:ProductService
     ) { }
 
   ngOnInit(): void {
@@ -40,6 +44,9 @@ export class CartComponent implements OnInit {
 
     this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
       this.shoppingProducts=data;
+      
+      
+      
 
     },error=>{
       

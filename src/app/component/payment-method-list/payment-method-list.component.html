@@ -1,21 +1,31 @@
-<h3>{{titulo}}</h3>
+<h1>{{titulo}}</h1>
 <table class="table table-bordered">
-    <tr>
-        <td>payId</td>
-        <td>Name</td>
-        <td>Opciones</td>
-    </tr>
+    <thead class="thead-light">
+        <tr>
+            <th>payId</th>
+            <th>Name</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
 
-    <tr *ngFor="let paymentMethod of paymentMethods">
-        <td>{{paymentMethod.payId}}</td>
-        <td>{{paymentMethod.name}}</td>
-        <td>
-            <a [routerLink]="['/payment-method-edit', paymentMethod.payId]" >editar</a>
-            <button (click)="delete(paymentMethod.payId)">Borrar</button>
-        </td>
-        
+    <tbody>
+        <tr *ngFor="let paymentMethod of paymentMethods">
+            <td>{{paymentMethod.payId}}</td>
+            <td>{{paymentMethod.name}}</td>
+            <td>
+                <button [routerLink]="['/payment-method-edit', paymentMethod.payId]" class="btn btn-primary mb-2 btn-lg">editar</button>
+            </td>
+            <td>
+                <button (click)="delete(paymentMethod.payId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+            </td>
+            
+    
+        </tr>
+    </tbody>
+    
 
-    </tr>
+    
 
 </table>
 

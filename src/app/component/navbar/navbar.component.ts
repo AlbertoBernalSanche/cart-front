@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthCartService } from 'src/app/service/auth-cart.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public authCartService:AuthCartService,
-    public router:Router
+    public router:Router,
+    
   ) { }
 
   

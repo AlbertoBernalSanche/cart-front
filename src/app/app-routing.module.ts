@@ -38,7 +38,7 @@ const routes: Routes = [
   {path:'product-cart',component:ProductCartComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'cart',component:CartComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'add-payment-method',component:AddPaymentMethodComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
-  {path:'shopping-cart',component:ShoppingCartComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
+  {path:'shopping-cart/:email',component:ShoppingCartComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'shoppin-product/:carId',component:ShoppinProductComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},

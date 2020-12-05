@@ -1,20 +1,31 @@
 <h3>{{titulo}}</h3>
 <table class="table table-bordered">
-    <tr>
-        <td>proId</td>
-        <td>Name</td>
-        <td>Opciones</td>
-    </tr>
 
+    <thead class="thead-light">
+        <tr>
+            <th>proId</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+    
+<tbody>
     <tr *ngFor="let product of products">
         <td>{{product.proId}}</td>
         <td>{{product.name}}</td>
+        <td>{{product.price| currency: 'COP'}}</td>
+        <td><img src={{product.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
         <td>
-            <a [routerLink]="['/product-edit', product.proId]" >editar</a>
-            <button (click)="delete(product.proId)">Borrar</button>
+            <button [routerLink]="['/product-edit', product.proId]" class="btn btn-primary mb-2 btn-lg">editar</button>
         </td>
+        <td><button (click)="delete(product.proId)" class="btn btn-primary mb-2 btn-lg">Borrar</button></td>
         
 
     </tr>
+</tbody>
+   
 
 </table>

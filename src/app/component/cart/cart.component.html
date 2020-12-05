@@ -1,25 +1,34 @@
+<div>
+    <button (click)="cleanCart()" class="btn btn-primary mb-2 btn-lg">limpiar carro</button>
+</div>
 <table class="table table-bordered">
     
-    <button (click)="cleanCart()">limpiar carro</button>
-    <br/>
-    <tr>
+    
+   
+    <thead class="thead-light">
+        <tr>
         
-        <td>proId</td>
-        <td>quantity</td>
-        <td>total</td>
-        <td>opciones</td>
-    </tr>
-
-    <tr *ngFor="let shoppinProduct of shoppingProducts">
+            <th>proId</th>
+            <th>quantity</th>
+            <th>total</th>
+            <th>opciones</th>
+        </tr>
+    
+    </thead>
+    <tbody>
+        <tr *ngFor="let shoppinProduct of shoppingProducts">
         
-        <td>{{shoppinProduct.productId}}</td>
-        <td>{{shoppinProduct.quantity}}</td>
-        <td>{{shoppinProduct.total}}</td>
-        <td>
-            <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)">Borrar</button>
-        </td>
-        
-
-    </tr>
+            <td>{{shoppinProduct.productId}}</td>
+            <td>{{shoppinProduct.quantity}}</td>
+            <td>{{shoppinProduct.total}}</td>
+            <td>
+                <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+            </td>
+            
+    
+        </tr>
+    </tbody>
+    
+    
 
 </table>

@@ -1,15 +1,25 @@
-<table class="table table-bordered">
-    <tr>
-        <td>productId</td>
-        <td>quantity</td>    
-        <td>total</td>
-    </tr>
+<h1>Productos del shoppingcart</h1>
+<button (click)="volver()" class="btn btn-primary mb-2 btn-lg">salir</button>
 
-    <tr *ngFor="let shoppingProduct of shoppingProducts">
-        <td>{{shoppingProduct.productId}}</td>
-        <td>{{shoppingProduct.quantity}}</td>
-        <td>{{shoppingProduct.total}}</td>
-    </tr>
-    <button routerLink="/shopping-cart">salir</button>
+<table class="table table-bordered">
+    <thead class="thead-light">
+
+        <tr>
+            <th>productId</th>
+            <th>quantity</th>    
+            <th>total</th>
+        </tr>
+    </thead>
+    
+
+    <tbody>
+        <tr *ngFor="let shoppingProduct of shoppingProducts">
+            <td>{{shoppingProduct.productId}}</td>
+            <td>{{shoppingProduct.quantity}}</td>
+            <td>{{shoppingProduct.total | currency: 'COP'}}</td>
+        </tr>
+    </tbody>
+    
+    
 
 </table>

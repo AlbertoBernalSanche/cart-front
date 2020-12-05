@@ -37,7 +37,7 @@ export class AddPaymentMethodComponent implements OnInit {
   }
 
   public findPaymentMethods():void{
-    this.paymentMethodService.findAll().subscribe(data=>{
+    this.paymentMethodService.findPaymentMethodAvalaible().subscribe(data=>{
       this.paymentMethods=data;
     },error=>{
       console.error(error);
@@ -54,18 +54,18 @@ export class AddPaymentMethodComponent implements OnInit {
   }
   public addPaymentMethod():void{
     //--------------------
-    console.log(this.shoppingCart.carId);
+    /*console.log(this.shoppingCart.carId);
     console.log(this.shoppingCart.total);
     console.log(this.email);
-    console.log(this.payId);
+    console.log(this.payId);*/
     this.shoppingCart.email=this.email;
     this.shoppingCart.payId=this.payId;
-    console.log("carId "+this.shoppingCart.carId);
+    /*console.log("carId "+this.shoppingCart.carId);
     console.log("email "+this.shoppingCart.email)
     console.log("payID "+this.shoppingCart.payId);
     console.log("items "+this.shoppingCart.items);
     console.log("total "+this.shoppingCart.total);
-    console.log("enable "+this.shoppingCart.enable);
+    console.log("enable "+this.shoppingCart.enable);*/
     
     this.messages=[""]
     this.shoppingCartService.update(this.shoppingCart).subscribe(ok=>{

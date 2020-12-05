@@ -11,6 +11,7 @@ import { CartService } from 'src/app/service/cart.service';
 export class ShoppinProductComponent implements OnInit {
 
   public carId:number;
+  public email:string;
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
@@ -24,6 +25,7 @@ export class ShoppinProductComponent implements OnInit {
 
     let params=this.activatedRoute.params['_value'];
     this.carId=params.carId;
+    this.email=localStorage.getItem("carEmail")
     this.findShoppingProductCart();
   }
 
@@ -33,6 +35,14 @@ export class ShoppinProductComponent implements OnInit {
     },error=>{
       console.error(error);
     });
+  }
+
+  public volver():void{
+    this.router.navigate(['/shopping-cart',this.email]);
+    /*if(this.carId!=null){
+      
+    }*/
+    
   }
 
 

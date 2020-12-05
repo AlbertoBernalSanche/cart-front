@@ -1,23 +1,23 @@
+<h1>{{titulo}}</h1>
 
+<div class="container">
+    <div class="row">
 
-<h3>{{titulo}}</h3>
-<table class="table table-bordered">
-    <tr>
-        <td>proId</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Opciones</td>
-    </tr>
+        <div *ngFor="let product of products" class="col-lg-3">
 
-    <tr *ngFor="let product of products">
-        <td>{{product.proId}}</td>
-        <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
-        <td>
-            <button (click)="addProduct(product.proId)">Añadir al carrito</button>
-        </td>
-        
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h5 class="card-title">{{product.name}}</h5>
+                  </div>
+                <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
+                <div class="card-body">
+                    
+                    <p class="card-text">{{product.price | currency: 'COP'}}</p>
+                    <button (click)="addProduct(product.proId)" class="btn btn-primary mb-2 btn-lg">Añadir al carrito</button>
+                </div>
+            </div>
+            <br>
+        </div>
 
-    </tr>
-
-</table>
+    </div>
+</div>

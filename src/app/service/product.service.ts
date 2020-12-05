@@ -25,6 +25,11 @@ export class ProductService {
     return this.httpClient.get(this.url+'findAll',{headers:headers});
   }
 
+  public findProductAvalaible():Observable<any>{
+    let headers=this.createTokenHeader();
+    return this.httpClient.get(this.url+'findProductAvalaible',{headers:headers});
+  }
+
   public findById(proId:string):Observable<any>{
     let headers=this.createTokenHeader();
     return this.httpClient.get(this.url+'findById/'+proId,{headers:headers});

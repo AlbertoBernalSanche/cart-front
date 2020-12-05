@@ -1,30 +1,37 @@
-
 <h3>{{titulo}}</h3>
 
-<div *ngIf="showMsg"> 
+<div *ngIf="showMsg">
     <p *ngFor="let msg of messages">
-        {{msg}} 
+        {{msg}}
     </p>
 </div>
 
 <table class="table table-bordered">
-    
-    <tr>
-        <td>Email</td>
-        <td>Name</td>
-        <td>Opciones</td>
-        
-    </tr>
-    
-    <tr *ngFor="let customer of customers">
-       
-        <td>{{customer.email}}</td>
-        <td>{{customer.name}}</td>
-        <td>
-            <a [routerLink]="['/customer-edit', customer.email]" >editar</a>
-            <button (click)="delete(customer.email)">Borrar</button>
-        </td>
-    </tr>
 
-  
+    <thead class="thead-light">
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Editar</th>
+            <th>Carros de compra</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let customer of customers">
+
+            <td>{{customer.email}}</td>
+            <td>{{customer.name}}</td>
+            <td><button [routerLink]="['/customer-edit', customer.email]" class="btn btn-primary mb-2 btn-lg">editar</button></td>
+            <td><button [routerLink]="['/shopping-cart', customer.email]" class="btn btn-primary mb-2 btn-lg">carros de compra</button></td>
+            <td>
+                <button (click)="delete(customer.email)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+            </td>
+        </tr>
+    </tbody>
+
+
+
+
 </table>

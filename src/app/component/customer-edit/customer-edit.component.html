@@ -1,31 +1,56 @@
+<h1>Customer edit</h1>
 <div *ngIf="customer">
-    <div *ngIf="showMsg"> 
+    <div *ngIf="showMsg">
         <p *ngFor="let msg of messages">
-            {{msg}} 
+            {{msg}}
         </p>
     </div>
-    
+
     <form #customerForm="ngForm">
-        <input readonly type="email" name="email" id="email" #email placeholder="email" [(ngModel)]="customer.email"/><br/>
-        <input type="text" name="name" id="name" #name placeholder="name" [(ngModel)]="customer.name"/><br/>
-        <input type="text" name="address" id="address" #address placeholder="address" [(ngModel)]="customer.address"/><br/>
-        <input type="text" name="phone" id="phone" #phone placeholder="phone" [(ngModel)]="customer.phone"/><br/>
-        <input readonly type="text" name="token" id="token" #token placeholder="token" [(ngModel)]="customer.token"/><br/>
-    
-        <select name="enable" id="enable" #enable [(ngModel)]="customer.enable">
-            <option *ngFor="let enable of enables" [value]="enable.id">
-                {{enable.name}}
-            </option>
-        </select>
-        <select name="tipo" id="tipo" #tipo [(ngModel)]="customer.tipo">
-            <option *ngFor="let tipo of tipos" [value]="tipo.id">
-                {{tipo.name}}
-            </option>
-        </select>
-        <br/>
-        <button (click)="update()">edit</button>
-        <button (click)="delete()">delete</button>
-        <button routerLink="/customer-list">cancel</button>
+        <div class="form-group">
+            <input readonly type="email" name="email" size="30" id="email" #email placeholder="email"
+                [(ngModel)]="customer.email" /><br />
+        </div>
+        <div class="form-group">
+            <input type="text" name="name" id="name" size="30" #name placeholder="name" [(ngModel)]="customer.name" /><br />
+        </div>
+        <div class="form-group">
+            <input type="text" name="address" id="address" size="30" #address placeholder="address"
+                [(ngModel)]="customer.address" /><br />
+        </div>
+        <div class="form-group">
+            <input type="text" name="phone" id="phone" size="30" #phone placeholder="phone" [(ngModel)]="customer.phone" /><br />
+        </div>
+        <div class="form-group">
+            <input readonly type="text" name="token" id="token" size="30" #token placeholder="token"
+                [(ngModel)]="customer.token" /><br />
+        </div>
+        <div class="form-group">
+            <select name="enable" id="enable" #enable [(ngModel)]="customer.enable">
+                <option *ngFor="let enable of enables" size="30" [value]="enable.id">
+                    {{enable.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="tipo" id="tipo" #tipo [(ngModel)]="customer.tipo">
+                <option *ngFor="let tipo of tipos" [value]="tipo.id">
+                    {{tipo.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <button (click)="update()" class="btn btn-primary mb-2 btn-lg">edit</button>
+            </div>
+            <div class="col">
+                <button (click)="delete()" class="btn btn-primary mb-2 btn-lg">delete</button>
+            </div>
+            <div class="col">
+                <button routerLink="/customer-list" class="btn btn-primary mb-2 btn-lg">cancel</button>
+            </div>
+
+        </div>
     </form>
 
 

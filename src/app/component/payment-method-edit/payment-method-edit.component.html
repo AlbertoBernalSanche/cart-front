@@ -1,24 +1,33 @@
+<h1>payment method edit</h1>
 <div *ngIf="paymentMethod">
-    <div *ngIf="showMsg"> 
+    <div *ngIf="showMsg">
         <p *ngFor="let msg of messages">
-            {{msg}} 
+            {{msg}}
         </p>
     </div>
-    
+
     <form #paymentMethodForm="ngForm">
-        <input readonly type="name" name="name" id="name" #name placeholder="name" [(ngModel)]="paymentMethod.name"/><br/>
-        
-    
-        <select name="enable" id="enable" #enable [(ngModel)]="paymentMethod.enable">
-            <option *ngFor="let enable of enables" [value]="enable.id">
-                {{enable.name}}
-            </option>
-        </select>
-        <br/>
-        <button (click)="update()">edit</button>
-        <button (click)="delete()">delete</button>
-        <button routerLink="/payment-method-list">cancel</button>
+        <div class="form-group">
+            <input readonly type="name" name="name" id="name" size="30" #name placeholder="name"
+                [(ngModel)]="paymentMethod.name" /><br />
+        </div>
+        <div class="form-group">
+            <select name="enable" id="enable" #enable [(ngModel)]="paymentMethod.enable">
+                <option *ngFor="let enable of enables" [value]="enable.id">
+                    {{enable.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <button (click)="update()" class="btn btn-primary mb-2 btn-lg">edit</button>
+            </div>
+            <div class="col">
+                <button (click)="delete()" class="btn btn-primary mb-2 btn-lg">delete</button>
+            </div>
+            <div class="col">
+                <button routerLink="/payment-method-list" class="btn btn-primary mb-2 btn-lg">cancel</button>
+            </div>
+        </div>
     </form>
-
-
 </div>

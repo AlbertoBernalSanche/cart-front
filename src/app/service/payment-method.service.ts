@@ -25,6 +25,11 @@ export class PaymentMethodService {
     return this.httpClient.get(this.url+'findAll',{headers:headers});
   }
 
+  public findPaymentMethodAvalaible():Observable<any>{
+    let headers=this.createTokenHeader();
+    return this.httpClient.get(this.url+'findPaymentMethodAvalaible',{headers:headers});
+  }
+
   public findById(payId:number):Observable<any>{
     let headers=this.createTokenHeader();
     return this.httpClient.get(this.url+'findById/'+payId,{headers:headers});

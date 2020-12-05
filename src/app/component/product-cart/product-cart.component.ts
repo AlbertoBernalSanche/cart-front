@@ -44,9 +44,9 @@ export class ProductCartComponent implements OnInit {
   }
 
   findAll(): void {
-    this.productService.findAll().subscribe(data => {
+    this.productService.findProductAvalaible().subscribe(data => {
       this.products = data;
-
+      
     }, error => {
 
       console.error(error);
@@ -81,7 +81,12 @@ export class ProductCartComponent implements OnInit {
         this.cart = new CreateCart(this.email);
         this.cartService.createCart(this.cart).subscribe(data1=>{
           this.shoppingCart=data1;
+          this.carId=this.shoppingCart.carId;
+
           localStorage.setItem("cart", this.carId.toString());
+          
+        },err=>{
+          console.log(err);
         });
         
   

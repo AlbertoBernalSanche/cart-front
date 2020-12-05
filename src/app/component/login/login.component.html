@@ -5,12 +5,32 @@
   </p>
 </div>
 
-<div>
-    <input [(ngModel)]="email"      placeholder="Email"     type="email"/><br/>
-    <input [(ngModel)]="password"   placeholder="Password"  type="password"/><br/>
-    <button (click)="login()">Sign In</button>
-    <button routerLink="/login" >Cancel</button>
-    <button routerLink="/register" >Register</button>
-    <button routerLink="/reset-password" >Reset password</button>
+<form action="">
+  <div class="form-group " >
    
+      <input [(ngModel)]="email"   name="email"   placeholder="Email"  size="30"   type="email"/><br/><br/>
+    
   </div>
+  <div class="form-group" >
+    <input [(ngModel)]="password"  name="password" placeholder="Password" size="30" type="password"/><br/><br/>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <button (click)="login()" class="btn btn-primary mb-2 btn-lg">Sign In</button>
+    </div>
+    <div class="col">
+      <button routerLink="/login" class="btn btn-primary mb-2 btn-lg">Cancel</button>
+    </div>
+    <div class="col">
+      <button routerLink="/register" class="btn btn-primary mb-2 btn-lg">Register</button>
+    </div>
+    <div class="col">
+      <button routerLink="/reset-password" class="btn btn-primary mb-2 btn-lg">Reset password</button>
+    </div>
+    
+  </div>
+
+
+</form>
+

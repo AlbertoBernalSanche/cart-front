@@ -23,12 +23,13 @@ export class LoginComponent implements OnInit {
   public token: string = "";
   public customer: Customer;
 
-  
+
   constructor(
     private router: Router,
     private authService: AuthService,
     public authCartService: AuthCartService,
     public customerService: CustomerService,
+    public navBar:NavbarComponent
     //@Inject(forwardRef(() => NavbarComponent)) private navBar: NavbarComponent
 
 
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
         console.log(this.token);
         this.user = new User(this.email, this.token);
         this.authService.loginUser(this.user).subscribe(data => {
+
           localStorage.setItem("usuario", JSON.stringify(this.user));
           localStorage.setItem("token", data.token);
 
@@ -68,19 +70,43 @@ export class LoginComponent implements OnInit {
           this.customerService.findById(this.email).subscribe(data => {
             this.customer = data;
             localStorage.setItem("tipo", this.customer.tipo);
-            localStorage.setItem("email",this.customer.email);
-            //this.navBar.updateTipo();
-            if (this.customer.tipo == "A") {
+            localStorage.setItem("email", this.customer.email);
 
-              this.router.navigate(['/customer-list']);
+            if (this.customer.enable == "N") {
 
+              if (user.emailVerified.valueOf() == true) {
+                this.customer.enable = "Y";
+                this.customerService.update(this.customer).subscribe(ok => {
+
+                  if (this.customer.tipo == "A") {
+                    this.navBar.updateTipo();
+                    this.router.navigate(['/customer-list']);
+                  } else {
+                    this.navBar.updateTipo();
+                    this.router.navigate(['/product-cart']);
+                  }
+
+                }, err => {
+                  console.log(err);
+
+                });
+
+              } else {
+                console.log("error al validar el estado del usuario")
+                this.singOut();
+              }
 
             } else {
 
-              this.router.navigate(['/product-cart']);
-
+              if (this.customer.tipo == "A") {
+                this.router.navigate(['/customer-list']);
+              } else {
+                this.router.navigate(['/product-cart']);
+              }
 
             }
+            //this.navBar.updateTipo();
+
 
           }, err => {
             console.log(err);
@@ -99,6 +125,23 @@ export class LoginComponent implements OnInit {
         console.log(e);
         this.showMsg = true;
         this.messages = e.messages;
+      });
+  }
+
+  public singOut(): void {
+    this.authCartService.singOut()
+      .then(() => {
+
+        localStorage.clear();
+
+        this.router.navigate(['/login']);
+
+      })
+      .catch(e => {
+
+        localStorage.clear();
+
+        this.router.navigate(['/login']);
       });
   }
 
