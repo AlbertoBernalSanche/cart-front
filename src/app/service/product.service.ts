@@ -52,4 +52,18 @@ export class ProductService {
     return this.httpClient.put(this.url+'update',product,{headers:headers});
 
   }
+
+  public findProductByWordAndPrice(word:string,max:number, min:number):Observable<any>{
+    let headers=this.createTokenHeader();
+
+    return this.httpClient.get(this.url+'findById/'+word+'/'+max+'/'+min,{headers:headers});
+
+  }
+
+  public findByNameContainsIgnoreCase(word:string):Observable<any>{
+    let headers=this.createTokenHeader();
+
+    return this.httpClient.get(this.url+'findByNameContainsIgnoreCase/'+word,{headers:headers});
+
+  }
 }

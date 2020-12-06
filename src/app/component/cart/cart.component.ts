@@ -8,6 +8,7 @@ import { ShoppinProduct } from 'src/app/domain/shoppin-product';
 import { ShoppingCart } from 'src/app/domain/shopping-cart';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
+import { ShoppingCartService } from 'src/app/service/shopping-cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,34 +21,43 @@ export class CartComponent implements OnInit {
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
-  public product:Product;
+  public products:Product[];
   public remove:RemoveProduct;
   public clean:CleanCart;
   public shoppingCart: ShoppingCart;
   public email: string;
   public cart: CreateCart;
+  public total:number;
+  
 
   constructor(
     public cartService:CartService,
-    public productService:ProductService
+    public productService:ProductService,
+    public shoppinCartService:ShoppingCartService
     ) { }
 
   ngOnInit(): void {
 
     this.carId=Number(localStorage.getItem("cart"));
     this.findShoppingProductsByShoppingCart();
+    this.findShoppingCart();
+    
+    
   }
 
+  public findShoppingCart(){
+    this.shoppinCartService.findById(this.carId).subscribe(data=>{
+      this.shoppingCart=data;
+      this.total=this.shoppingCart.total;
+    },err=>{
+      console.log(err);
+    })
+  }
   public findShoppingProductsByShoppingCart():void{
-
-    
-
     this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
       this.shoppingProducts=data;
       
       
-      
-
     },error=>{
       
       console.error(error);
@@ -62,6 +72,7 @@ export class CartComponent implements OnInit {
       this.showMsg=true;
       this.messages[0]="el carro se limpio con exito";
       this.findShoppingProductsByShoppingCart();
+      this.findShoppingCart();
     },err=>{
       console.log(err);
       this.showMsg=true;
@@ -77,6 +88,7 @@ export class CartComponent implements OnInit {
       this.showMsg=true;
       this.messages[0]="el product se removio con exito";
       this.findShoppingProductsByShoppingCart();
+      this.findShoppingCart();
     },err=>{
       console.log(err);
       this.showMsg=true;

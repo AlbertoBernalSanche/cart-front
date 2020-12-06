@@ -8,6 +8,7 @@ import { CustomerService } from 'src/app/service/customer.service';
 import { Customer } from 'src/app/domain/customer';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,61 +29,52 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     public authCartService: AuthCartService,
-    public customerService: CustomerService,
-    public navBar:NavbarComponent
-    //@Inject(forwardRef(() => NavbarComponent)) private navBar: NavbarComponent
-
+    public customerService: CustomerService
+    
 
   ) { }
 
   ngOnInit(): void {
-    //this.user=new User("admin","password");
+    
   }
-
-  /*public ingresar():void{
-
-    this.authService.loginUser(this.user).subscribe(data=>{
-      localStorage.setItem("usuario",JSON.stringify(this.user));
-      localStorage.setItem("token",data.token);
-      this.router.navigate(['/customer-list']);
-    },err=>{
-      this.showMsg=true;
-      this.messages[0]="Usuario o clave no son validos"
-
-    })
-  }*/
 
   public login(): void {
 
+    //validar usuario en firebase
     this.authCartService.login(this.email, this.password)
       .then(() => {
         var user = firebase.auth().currentUser;
         this.token = user.uid;
-        //this.token=localStorage.getItem("user");
         console.log(this.token);
         this.user = new User(this.email, this.token);
+
+        //validar email y token en base de datos
         this.authService.loginUser(this.user).subscribe(data => {
 
           localStorage.setItem("usuario", JSON.stringify(this.user));
           localStorage.setItem("token", data.token);
 
-
+          //buscar usuario para validar informacion
           this.customerService.findById(this.email).subscribe(data => {
             this.customer = data;
-            localStorage.setItem("tipo", this.customer.tipo);
+
             localStorage.setItem("email", this.customer.email);
 
+            //validar si el usuario esta activo en base de datos
             if (this.customer.enable == "N") {
 
+              //validar si el usuario se verifico en firebase
               if (user.emailVerified.valueOf() == true) {
                 this.customer.enable = "Y";
                 this.customerService.update(this.customer).subscribe(ok => {
 
+                  //dirigir segun tipo de usuario
                   if (this.customer.tipo == "A") {
-                    this.navBar.updateTipo();
+                    this.customerService.setUser(this.customer)
                     this.router.navigate(['/customer-list']);
                   } else {
-                    this.navBar.updateTipo();
+                    
+                    this.customerService.setUser(this.customer);
                     this.router.navigate(['/product-cart']);
                   }
 
@@ -98,14 +90,18 @@ export class LoginComponent implements OnInit {
 
             } else {
 
+              //dirigir segun tipo de usuario
               if (this.customer.tipo == "A") {
+
+                this.customerService.setUser(this.customer)
                 this.router.navigate(['/customer-list']);
               } else {
+                this.customerService.setUser(this.customer)
                 this.router.navigate(['/product-cart']);
               }
 
             }
-            //this.navBar.updateTipo();
+
 
 
           }, err => {
@@ -128,19 +124,16 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  
   public singOut(): void {
     this.authCartService.singOut()
       .then(() => {
-
         localStorage.clear();
-
         this.router.navigate(['/login']);
 
       })
       .catch(e => {
-
         localStorage.clear();
-
         this.router.navigate(['/login']);
       });
   }

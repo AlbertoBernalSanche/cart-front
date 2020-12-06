@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateCart } from 'src/app/domain/create-cart';
 import { PaymentMethod } from 'src/app/domain/payment-method';
 import { ShoppingCart } from 'src/app/domain/shopping-cart';
@@ -21,11 +22,13 @@ export class AddPaymentMethodComponent implements OnInit {
   public email:string;
   public createCart:CreateCart;
   public payId:number;
+  public total:number=0;
 
   constructor(
     public cartService:CartService,
     public paymentMethodService:PaymentMethodService,
-    public shoppingCartService:ShoppingCartService
+    public shoppingCartService:ShoppingCartService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -48,39 +51,39 @@ export class AddPaymentMethodComponent implements OnInit {
 
     this.shoppingCartService.findById(this.carId).subscribe(data=>{
       this.shoppingCart=data;
-      //this.shoppingCart.payId=1;
+      this.total=this.shoppingCart.total;
+      
     });
     
   }
   public addPaymentMethod():void{
-    //--------------------
-    /*console.log(this.shoppingCart.carId);
-    console.log(this.shoppingCart.total);
-    console.log(this.email);
-    console.log(this.payId);*/
+    
     this.shoppingCart.email=this.email;
     this.shoppingCart.payId=this.payId;
-    /*console.log("carId "+this.shoppingCart.carId);
-    console.log("email "+this.shoppingCart.email)
-    console.log("payID "+this.shoppingCart.payId);
-    console.log("items "+this.shoppingCart.items);
-    console.log("total "+this.shoppingCart.total);
-    console.log("enable "+this.shoppingCart.enable);*/
-    
     this.messages=[""]
-    this.shoppingCartService.update(this.shoppingCart).subscribe(ok=>{
-      this.showMsg=true;
-      this.messages[0]="se añadio el metodo de pago con exito";
-      this.createCart=new CreateCart(this.email);
-      this.cartService.createCart(this.createCart).subscribe(data=>{
-        this.shoppingCart=data;
+    if (this.total>0) {
+      this.shoppingCartService.update(this.shoppingCart).subscribe(ok=>{
+        this.showMsg=true;
+        this.messages[0]="se añadio el metodo de pago con exito";
+        this.createCart=new CreateCart(this.email);
+        this.cartService.createCart(this.createCart).subscribe(data=>{
+          this.shoppingCart=data;
+          this.router.navigate(['/cart']);
+          
+        });
+      },err=>{
+        console.log(err);
+        this.showMsg=true;
+        this.messages=err.error.error;
+        
       });
-    },err=>{
-      console.log(err);
-      this.showMsg=true;
-      this.messages=err.error.error;
+    } else {
+      console.log("total es cero")
       
-    });
+    }
+    
+    
+    
 
   }
 }

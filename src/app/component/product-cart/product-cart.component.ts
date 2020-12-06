@@ -26,6 +26,10 @@ export class ProductCartComponent implements OnInit {
   public email: string;
   public cart: CreateCart;
 
+  public word:string;
+  public max:number;
+  public min:number;
+
   public addProductCart: AddProduct;
 
 
@@ -41,6 +45,28 @@ export class ProductCartComponent implements OnInit {
 
     this.findAll();
     this.findShoppingCartAvailable();
+  }
+
+  public findByNameContainsIgnoreCase(){
+    if (this.word=="" || this.word==null) {
+      this.findAll()
+      
+    } else {
+      this.productService.findByNameContainsIgnoreCase(this.word).subscribe(data=>{
+        this.products=data;
+      },err=>{
+        console.log(err)
+      })
+    }
+    
+  }
+
+  public findProductByWordAndPrice(){
+    this.productService.findProductByWordAndPrice(this.word,this.max,this.min).subscribe(data=>{
+      this.products=data;
+    },err=>{
+      console.log(err)
+    })
   }
 
   findAll(): void {

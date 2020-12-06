@@ -16,11 +16,12 @@
     
     </thead>
     <tbody>
-        <tr *ngFor="let shoppinProduct of shoppingProducts">
+        <tr *ngFor="let shoppinProduct of shoppingProducts" >
         
             <td>{{shoppinProduct.productId}}</td>
             <td>{{shoppinProduct.quantity}}</td>
-            <td>{{shoppinProduct.total}}</td>
+            
+            <td>{{shoppinProduct.total |  currency: 'COP'}}</td>
             <td>
                 <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
             </td>
@@ -32,3 +33,12 @@
     
 
 </table>
+
+<div>
+    <label for="">Total: {{ total|  currency: 'COP'}}</label>
+</div>
+<div class="row">
+    <div class="col">
+        <button routerLink="/add-payment-method" class="btn btn-primary mb-2 btn-lg">Pagar</button>
+    </div>
+</div>

@@ -26,8 +26,5 @@ export class AuthService {
     localStorage.removeItem('usuario');
   }
 
- /* public register(customer:Customer):Observable<any>{
 
-    return this.httpClient.post(this.url+'save',customer);
-  }*/
 }

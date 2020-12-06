@@ -1,13 +1,28 @@
-
+<h1>Finalizar compra</h1>
 <div>
     <form #shoppingCartForm="ngForm">
-        <select name="payId"  [(ngModel)]="payId">
-            <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.payId">
-                {{paymentMethod.name}}
-            </option>
-        </select>
-        <br/>
-        <button (click)="addPaymentMethod()">pagar</button>
+        <div class="form-group">
+            <select name="payId" [(ngModel)]="payId">
+                <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.payId">
+                    {{paymentMethod.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="col"> Total: {{total |  currency: 'COP'}}</div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <button (click)="addPaymentMethod()" class="btn btn-primary mb-2 btn-lg">pagar</button>
+            </div>
+            <div class="col">
+                <button routerLink="/cart" class="btn btn-primary mb-2 btn-lg">cancelar</button>
+            </div>
+
+        </div>
+
     </form>
 
-</div>  
+</div>

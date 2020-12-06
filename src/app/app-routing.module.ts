@@ -23,6 +23,7 @@ import { from } from 'rxjs';
 import { AuthGuard } from './guard/auth.guard';
 import { RegisterComponent } from './component/register/register.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 
 const redirectUnauthorizedToLogin=()=>redirectUnauthorizedTo(['/login']);
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path:'shopping-cart/:email',component:ShoppingCartComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'shoppin-product/:carId',component:ShoppinProductComponent,canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redirectUnauthorizedToLogin}},
   {path:'login',component:LoginComponent},
+  {path:'reset-password',component:ResetPasswordComponent},
   {path:'register',component:RegisterComponent},
   {path:'navbar',component:NavbarComponent},
   {path:'',component:LoginComponent}
