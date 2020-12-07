@@ -7,6 +7,8 @@ import firebase from 'firebase/app';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Customer } from 'src/app/domain/customer';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { $ } from 'protractor';
+import { AlertService } from 'src/app/service/alert.service';
 
 
 @Component({
@@ -29,7 +31,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     public authCartService: AuthCartService,
-    public customerService: CustomerService
+    public customerService: CustomerService,
+    public alertService:AlertService
     
 
   ) { }
@@ -80,11 +83,13 @@ export class LoginComponent implements OnInit {
 
                 }, err => {
                   console.log(err);
+                  
 
                 });
 
               } else {
                 console.log("error al validar el estado del usuario")
+                this.alertService.error("error al verificar las credenciales intentelo de nuevo");
                 this.singOut();
               }
 
@@ -108,6 +113,8 @@ export class LoginComponent implements OnInit {
             console.log(err);
             this.showMsg = true;
             this.messages = err.error.error;
+            this.alertService.error("error al verificar las credenciales intentelo de nuevo");
+            
           })
 
 
@@ -115,12 +122,16 @@ export class LoginComponent implements OnInit {
           console.log(err);
           this.showMsg = true;
           this.messages = err.error.error;
+          this.alertService.error("error al verificar las credenciales intentelo de nuevo");
+          
         })
       })
       .catch(e => {
         console.log(e);
         this.showMsg = true;
         this.messages = e.messages;
+        this.alertService.error("error al verificar las credenciales intentelo de nuevo");
+       
       });
   }
 

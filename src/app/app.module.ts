@@ -27,6 +27,8 @@ import { environment } from 'src/environments/environment';
 import { RegisterComponent } from './component/register/register.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { AlertComponent } from './component/alert/alert.component';
+import { AlertModule } from './component/alert/alert.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     ShoppinProductComponent,
     RegisterComponent,
     NavbarComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AlertComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    NgbModule
+    NgbModule,
+    AlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

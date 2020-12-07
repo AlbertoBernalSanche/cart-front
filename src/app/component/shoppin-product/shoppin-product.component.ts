@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/domain/product';
 import { ShoppinProduct } from 'src/app/domain/shoppin-product';
 import { CartService } from 'src/app/service/cart.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-shoppin-product',
@@ -15,10 +17,12 @@ export class ShoppinProductComponent implements OnInit {
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
+  public products:Product[]=[];
   constructor(
     public cartService:CartService,
     public router:Router,
     public activatedRoute:ActivatedRoute,
+    public productService:ProductService
   ) { }
 
   ngOnInit(): void {
@@ -32,9 +36,24 @@ export class ShoppinProductComponent implements OnInit {
   public findShoppingProductCart():void{
     this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
       this.shoppingProducts=data;
+      for (let index = 0; index < this.shoppingProducts.length; index++) {
+        this.productService.findById(this.shoppingProducts[index].productId).subscribe(data1=>{
+          this.products[index]=  data1
+          /*console.log(this.shoppingProducts.length)
+          console.log(this.products.length)
+          console.log(this.products[index])*/
+          
+        },err=>{
+          console.log(err)
+        })
+        
+      }
+      
     },error=>{
+      
       console.error(error);
     });
+    
   }
 
   public volver():void{

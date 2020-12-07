@@ -9,21 +9,24 @@
         <tr>
         
             <th>proId</th>
+            <th>name</th>
             <th>quantity</th>
+            <th>image</th>
             <th>total</th>
             <th>opciones</th>
         </tr>
     
     </thead>
     <tbody>
-        <tr *ngFor="let shoppinProduct of shoppingProducts" >
-        
-            <td>{{shoppinProduct.productId}}</td>
-            <td>{{shoppinProduct.quantity}}</td>
+        <tr *ngFor="let prod of products; let x = index" >
             
-            <td>{{shoppinProduct.total |  currency: 'COP'}}</td>
+            <td>{{shoppingProducts[x].productId}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{shoppingProducts[x].quantity}}</td>
+            <td><img src={{prod.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
+            <td>{{shoppingProducts[x].total |  currency: 'COP'}}</td>
             <td>
-                <button (click)="removeProduct(shoppinProduct.shoppingCartId,shoppinProduct.productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+                <button (click)="removeProduct(shoppingProducts[x].shoppingCartId,shoppingProducts[x].productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
             </td>
             
     

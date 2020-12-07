@@ -4,6 +4,7 @@ import { AddProduct } from 'src/app/domain/add-product';
 import { CreateCart } from 'src/app/domain/create-cart';
 import { Product } from 'src/app/domain/product';
 import { ShoppingCart } from 'src/app/domain/shopping-cart';
+import { AlertService } from 'src/app/service/alert.service';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -37,6 +38,7 @@ export class ProductCartComponent implements OnInit {
   constructor(
     public productService: ProductService,
     public cartService: CartService,
+    public alertService:AlertService
 
 
   ) { }
@@ -55,6 +57,7 @@ export class ProductCartComponent implements OnInit {
       this.productService.findByNameContainsIgnoreCase(this.word).subscribe(data=>{
         this.products=data;
       },err=>{
+        this.alertService.info("no se encontro la busqueda")
         console.log(err)
       })
     }
@@ -89,10 +92,12 @@ export class ProductCartComponent implements OnInit {
     this.cartService.addProduct(this.addProductCart).subscribe(ok => {
       this.showMsg = true;
       this.messages[0] = "el product se añadio al carro con exito";
+      this.alertService.success("producto añadido al carro con exito")
     }, err => {
       console.log(err);
       this.showMsg = true;
       this.messages = err.error.error;
+      this.alertService.error("error al añadir el producto")
 
     });
   }

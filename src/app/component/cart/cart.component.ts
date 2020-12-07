@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   public showMsg:boolean=false;
   public messages:string[]=[""];
   public shoppingProducts:ShoppinProduct[];
-  public products:Product[];
+  public products:Product[]=[];
   public remove:RemoveProduct;
   public clean:CleanCart;
   public shoppingCart: ShoppingCart;
@@ -56,12 +56,24 @@ export class CartComponent implements OnInit {
   public findShoppingProductsByShoppingCart():void{
     this.cartService.findShoppingProductByShoppingCart(this.carId).subscribe(data=>{
       this.shoppingProducts=data;
-      
+      for (let index = 0; index < this.shoppingProducts.length; index++) {
+        this.productService.findById(this.shoppingProducts[index].productId).subscribe(data1=>{
+          this.products[index]=  data1
+          /*console.log(this.shoppingProducts.length)
+          console.log(this.products.length)
+          console.log(this.products[index])*/
+          
+        },err=>{
+          console.log(err)
+        })
+        
+      }
       
     },error=>{
       
       console.error(error);
     });
+    
   }
 
   public cleanCart():void{

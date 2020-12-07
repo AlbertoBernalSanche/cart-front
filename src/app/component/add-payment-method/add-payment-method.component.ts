@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CreateCart } from 'src/app/domain/create-cart';
 import { PaymentMethod } from 'src/app/domain/payment-method';
 import { ShoppingCart } from 'src/app/domain/shopping-cart';
+import { AlertService } from 'src/app/service/alert.service';
 import { CartService } from 'src/app/service/cart.service';
 import { PaymentMethodService } from 'src/app/service/payment-method.service';
 import { ShoppingCartService } from 'src/app/service/shopping-cart.service';
@@ -29,6 +30,7 @@ export class AddPaymentMethodComponent implements OnInit {
     public paymentMethodService:PaymentMethodService,
     public shoppingCartService:ShoppingCartService,
     private router: Router,
+    public alertService:AlertService
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,7 @@ export class AddPaymentMethodComponent implements OnInit {
         this.createCart=new CreateCart(this.email);
         this.cartService.createCart(this.createCart).subscribe(data=>{
           this.shoppingCart=data;
-          this.router.navigate(['/cart']);
+          this.router.navigate(['/product-cart']);
           
         });
       },err=>{
@@ -78,6 +80,8 @@ export class AddPaymentMethodComponent implements OnInit {
         
       });
     } else {
+
+      this.alertService.error("el valor de la compra es 0")
       console.log("total es cero")
       
     }

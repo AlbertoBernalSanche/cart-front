@@ -6,6 +6,8 @@
 
         <tr>
             <th>productId</th>
+            <th>name</th>
+            <th>image</th>
             <th>quantity</th>    
             <th>total</th>
         </tr>
@@ -13,10 +15,12 @@
     
 
     <tbody>
-        <tr *ngFor="let shoppingProduct of shoppingProducts">
-            <td>{{shoppingProduct.productId}}</td>
-            <td>{{shoppingProduct.quantity}}</td>
-            <td>{{shoppingProduct.total | currency: 'COP'}}</td>
+        <tr *ngFor="let prod of products; let x = index">
+            <td>{{shoppingProducts[x].productId}}</td>
+            <td>{{prod.name}}</td>
+            <td><img src={{prod.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
+            <td>{{shoppingProducts[x].quantity}}</td>
+            <td>{{shoppingProducts[x].total | currency: 'COP'}}</td>
         </tr>
     </tbody>
     
