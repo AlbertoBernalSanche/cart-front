@@ -8,10 +8,12 @@
 
     <form #paymentMethodForm="ngForm">
         <div class="form-group">
+            <label >Nombre</label><br/>
             <input readonly type="name" name="name" id="name" size="30" #name placeholder="name"
                 [(ngModel)]="paymentMethod.name" /><br />
         </div>
         <div class="form-group">
+            <label >Activo</label><br/>
             <select name="enable" id="enable" #enable [(ngModel)]="paymentMethod.enable">
                 <option *ngFor="let enable of enables" [value]="enable.id">
                     {{enable.name}}

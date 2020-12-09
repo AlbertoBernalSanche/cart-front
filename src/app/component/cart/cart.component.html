@@ -1,47 +1,55 @@
 <div>
     <button (click)="cleanCart()" class="btn btn-primary mb-2 btn-lg">limpiar carro</button>
 </div>
-<table class="table table-bordered">
+<div *ngIf=" products.length!=undefined">
+    <div *ngIf="shoppingProducts.length!=undefined">
+        <div *ngIf="products.length==shoppingProducts.length">
+            <table class="table table-bordered">
     
     
    
-    <thead class="thead-light">
-        <tr>
-        
-            <th>proId</th>
-            <th>name</th>
-            <th>quantity</th>
-            <th>image</th>
-            <th>total</th>
-            <th>opciones</th>
-        </tr>
-    
-    </thead>
-    <tbody>
-        <tr *ngFor="let prod of products; let x = index" >
+                <thead class="thead-light">
+                    <tr>
+                    
+                        <th>proId</th>
+                        <th>name</th>
+                        <th>quantity</th>
+                        <th>image</th>
+                        <th>total</th>
+                        <th>opciones</th>
+                    </tr>
+                
+                </thead>
+                <tbody>
+                    <tr *ngFor="let shoppinProducts of shoppingProducts; let x = index" >
+                        
+                        <td>{{shoppinProducts.productId}}</td>
+                        <td>{{products[x].name}}</td>
+                        <td>{{shoppinProducts.quantity}}</td>
+                        <td><img src={{products[x].image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
+                        <td>{{shoppinProducts.total |  currency: 'COP'}}</td>
+                        <td>
+                            <button (click)="removeProduct(shoppinProducts.shoppingCartId,shoppinProducts.productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+                        </td>
+                        
+                
+                    </tr>
+                </tbody>
+                
+                
             
-            <td>{{shoppingProducts[x].productId}}</td>
-            <td>{{prod.name}}</td>
-            <td>{{shoppingProducts[x].quantity}}</td>
-            <td><img src={{prod.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
-            <td>{{shoppingProducts[x].total |  currency: 'COP'}}</td>
-            <td>
-                <button (click)="removeProduct(shoppingProducts[x].shoppingCartId,shoppingProducts[x].productId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
-            </td>
+            </table>
             
-    
-        </tr>
-    </tbody>
-    
-    
+            <div>
+                <label for="">Total: {{ total|  currency: 'COP'}}</label>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button routerLink="/add-payment-method" class="btn btn-primary mb-2 btn-lg">Pagar</button>
+                </div>
+            </div>
 
-</table>
-
-<div>
-    <label for="">Total: {{ total|  currency: 'COP'}}</label>
-</div>
-<div class="row">
-    <div class="col">
-        <button routerLink="/add-payment-method" class="btn btn-primary mb-2 btn-lg">Pagar</button>
+        </div>
     </div>
+    
 </div>

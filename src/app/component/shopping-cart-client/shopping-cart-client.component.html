@@ -1,0 +1,26 @@
+<h1>Shopping carts</h1>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>carId</th>
+            <th>email</th>
+            <th>items</th>
+            <th>total</th>
+            <th>opciones</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let shoppingCart of shoppingCarts">
+            <td>{{shoppingCart.carId}}</td>
+            <td>{{shoppingCart.email}}</td>
+            <td>{{shoppingCart.items}}</td>
+            <td>{{shoppingCart.total | currency: 'COP'}}</td>
+            <td>
+                <button [routerLink]="['/shoppin-product-client', shoppingCart.carId]" class="btn btn-primary mb-2 btn-lg">ver carrito</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

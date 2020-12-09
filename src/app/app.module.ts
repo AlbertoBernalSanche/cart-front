@@ -29,6 +29,8 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { AlertComponent } from './component/alert/alert.component';
 import { AlertModule } from './component/alert/alert.module';
+import { ShoppingCartClientComponent } from './component/shopping-cart-client/shopping-cart-client.component';
+import { ShoppingProductClientComponent } from './component/shopping-product-client/shopping-product-client.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,8 @@ import { AlertModule } from './component/alert/alert.module';
     NavbarComponent,
     ResetPasswordComponent,
     AlertComponent,
+    ShoppingCartClientComponent,
+    ShoppingProductClientComponent,
     
   ],
   imports: [

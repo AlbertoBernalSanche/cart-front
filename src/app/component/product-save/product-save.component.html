@@ -7,21 +7,27 @@
 
 <form #productForm="ngForm">
     <div class="form-group">
+        <label >Id</label><br/>
         <input type="text" name="proId" id="proId" #proId placeholder="proId" [(ngModel)]="product.proId"/><br/>
     </div>
     <div class="form-group">
+        <label >Detalle</label><br/>
         <input type="text" name="detail" id="detail" #detail placeholder="detail" [(ngModel)]="product.detail"/><br/>
     </div>
     <div class="form-group">
+        <label >Imagen</label><br/>
         <input type="text" name="image" id="image" #image placeholder="image" [(ngModel)]="product.image"/><br/>
     </div>
     <div class="form-group">
+        <label >Nombre</label><br/>
         <input type="text" name="name" id="name" #name placeholder="name" [(ngModel)]="product.name"/><br/>
     </div>
     <div class="form-group">
+        <label >Número</label><br/>
         <input type="number" name="price" id="price" #price placeholder="price" [(ngModel)]="product.price"/><br/>
     </div>
     <div class="form-group">
+        <label >Activo</label><br/>
         <select name="enable" id="enable" #enable [(ngModel)]="product.enable">
             <option *ngFor="let enable of enables" [value]="enable.id">
                 {{enable.name}}

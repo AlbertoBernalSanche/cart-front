@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   public register(): void {
 
-    this.customer = new Customer(this.email, this.address, "N", this.name, this.phone, this.password, "C");
+    this.customer = new Customer(this.email, this.address, "Y", this.name, this.phone, this.password, "C");
     
     this.customerService.save(this.customer).subscribe(
       ok => {

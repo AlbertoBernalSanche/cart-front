@@ -6,11 +6,11 @@ import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
-  selector: 'app-shoppin-product',
-  templateUrl: './shoppin-product.component.html',
-  styleUrls: ['./shoppin-product.component.css']
+  selector: 'app-shopping-product-client',
+  templateUrl: './shopping-product-client.component.html',
+  styleUrls: ['./shopping-product-client.component.css']
 })
-export class ShoppinProductComponent implements OnInit {
+export class ShoppingProductClientComponent implements OnInit {
 
   public carId:number;
   public email:string;
@@ -39,30 +39,21 @@ export class ShoppinProductComponent implements OnInit {
       for (let index = 0; index < this.shoppingProducts.length; index++) {
         this.productService.findById(this.shoppingProducts[index].productId).subscribe(data1=>{
           this.products[index]=  data1
-          /*console.log(this.shoppingProducts.length)
-          console.log(this.products.length)
-          console.log(this.products[index])*/
-          
         },err=>{
           console.log(err)
         })
-        
       }
-      
     },error=>{
-      
       console.error(error);
     });
     
   }
 
+  
+
   public volver():void{
-    this.router.navigate(['/shopping-cart',this.email]);
-    /*if(this.carId!=null){
-      
-    }*/
+    this.router.navigate(['/shopping-cart-client']);
     
   }
-
 
 }

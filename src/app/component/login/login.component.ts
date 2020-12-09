@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/domain/user';
 import { AuthCartService } from 'src/app/service/auth-cart.service';
 import { AuthService } from 'src/app/service/auth.service';
-import firebase from 'firebase/app';
+import firebase, { auth } from 'firebase/app';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Customer } from 'src/app/domain/customer';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -32,16 +32,19 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     public authCartService: AuthCartService,
     public customerService: CustomerService,
-    public alertService:AlertService
-    
+    public alertService: AlertService
+
 
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
+  
+
   public login(): void {
+
 
     //validar usuario en firebase
     this.authCartService.login(this.email, this.password)
@@ -64,28 +67,20 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("email", this.customer.email);
 
             //validar si el usuario esta activo en base de datos
-            if (this.customer.enable == "N") {
+            if (this.customer.enable == "Y") {
 
               //validar si el usuario se verifico en firebase
               if (user.emailVerified.valueOf() == true) {
-                this.customer.enable = "Y";
-                this.customerService.update(this.customer).subscribe(ok => {
+                //this.customer.enable = "Y";
+                if (this.customer.tipo == "A") {
+                  this.customerService.setUser(this.customer)
+                  this.router.navigate(['/customer-list']);
+                } else {
 
-                  //dirigir segun tipo de usuario
-                  if (this.customer.tipo == "A") {
-                    this.customerService.setUser(this.customer)
-                    this.router.navigate(['/customer-list']);
-                  } else {
-                    
-                    this.customerService.setUser(this.customer);
-                    this.router.navigate(['/product-cart']);
-                  }
-
-                }, err => {
-                  console.log(err);
-                  
-
-                });
+                  this.customerService.setUser(this.customer);
+                  this.router.navigate(['/product-cart']);
+                }
+                
 
               } else {
                 console.log("error al validar el estado del usuario")
@@ -95,16 +90,10 @@ export class LoginComponent implements OnInit {
 
             } else {
 
-              //dirigir segun tipo de usuario
-              if (this.customer.tipo == "A") {
-
-                this.customerService.setUser(this.customer)
-                this.router.navigate(['/customer-list']);
-              } else {
-                this.customerService.setUser(this.customer)
-                this.router.navigate(['/product-cart']);
-              }
-
+              console.log("error al validar el estado del usuario")
+              this.alertService.error("error al verificar las credenciales intentelo de nuevo");
+              this.singOut();
+              
             }
 
 
@@ -114,7 +103,8 @@ export class LoginComponent implements OnInit {
             this.showMsg = true;
             this.messages = err.error.error;
             this.alertService.error("error al verificar las credenciales intentelo de nuevo");
-            
+            this.singOut();
+
           })
 
 
@@ -123,7 +113,8 @@ export class LoginComponent implements OnInit {
           this.showMsg = true;
           this.messages = err.error.error;
           this.alertService.error("error al verificar las credenciales intentelo de nuevo");
-          
+          this.singOut();
+
         })
       })
       .catch(e => {
@@ -131,11 +122,11 @@ export class LoginComponent implements OnInit {
         this.showMsg = true;
         this.messages = e.messages;
         this.alertService.error("error al verificar las credenciales intentelo de nuevo");
-       
+        this.singOut();
       });
   }
 
-  
+
   public singOut(): void {
     this.authCartService.singOut()
       .then(() => {

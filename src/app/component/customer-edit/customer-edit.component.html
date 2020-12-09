@@ -8,24 +8,30 @@
 
     <form #customerForm="ngForm">
         <div class="form-group">
+            <label >Email</label><br />
             <input readonly type="email" name="email" size="30" id="email" #email placeholder="email"
                 [(ngModel)]="customer.email" /><br />
         </div>
         <div class="form-group">
+            <label >Nombre</label><br />
             <input type="text" name="name" id="name" size="30" #name placeholder="name" [(ngModel)]="customer.name" /><br />
         </div>
         <div class="form-group">
+            <label >Dirección</label><br />
             <input type="text" name="address" id="address" size="30" #address placeholder="address"
                 [(ngModel)]="customer.address" /><br />
         </div>
         <div class="form-group">
+            <label >Teléfono</label><br />
             <input type="text" name="phone" id="phone" size="30" #phone placeholder="phone" [(ngModel)]="customer.phone" /><br />
         </div>
         <div class="form-group">
+            <label >Token</label><br />
             <input readonly type="text" name="token" id="token" size="30" #token placeholder="token"
                 [(ngModel)]="customer.token" /><br />
         </div>
         <div class="form-group">
+            <label >Estado</label><br />
             <select name="enable" id="enable" #enable [(ngModel)]="customer.enable">
                 <option *ngFor="let enable of enables" size="30" [value]="enable.id">
                     {{enable.name}}
@@ -33,6 +39,7 @@
             </select>
         </div>
         <div class="form-group">
+            <label >Tipo</label><br />
             <select name="tipo" id="tipo" #tipo [(ngModel)]="customer.tipo">
                 <option *ngFor="let tipo of tipos" [value]="tipo.id">
                     {{tipo.name}}

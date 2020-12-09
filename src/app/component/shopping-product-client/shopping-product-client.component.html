@@ -1,10 +1,10 @@
 <h1>Productos del shoppingcart</h1>
 <button (click)="volver()" class="btn btn-primary mb-2 btn-lg">salir</button>
 
-
 <div *ngIf=" products.length!=undefined">
     <div *ngIf="shoppingProducts.length!=undefined">
         <div *ngIf="products.length==shoppingProducts.length">
+
             <table class="table table-bordered">
                 <thead class="thead-light">
             
@@ -31,8 +31,8 @@
                 
             
             </table>
-
         </div>
     </div>
 </div>
+
 

@@ -2,6 +2,50 @@
 <div>
     <form #shoppingCartForm="ngForm">
         <div class="form-group">
+            <label>Nombre y apellido como figura en la tarjeta</label>
+            <input type="text" class="form-control" placeholder="Entre el nombre">
+        </div>
+        <div class="form-group">
+            <label >Numero de tarjeta</label>
+            <input type="text" class="form-control" placeholder="Numero de tarjeta">
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label >Mes de vencimiento</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>Enero</option>
+                      <option>Febrero</option>
+                      <option>Marzo</option>
+                      <option>Abril</option>
+                      <option>Mayo</option>
+                      <option>Junio</option>
+                      <option>Julio</option>
+                      <option>Agosto</option>
+                      <option>Septiembre</option>
+                      <option>Octubre</option>
+                      <option>Noviembre</option>
+                      <option>Diciembre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label >Año de vencimiento</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <label >Metodo de pago</label>
             <select name="payId" [(ngModel)]="payId">
                 <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.payId">
                     {{paymentMethod.name}}

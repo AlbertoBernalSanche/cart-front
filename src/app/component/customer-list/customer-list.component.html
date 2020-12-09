@@ -12,9 +12,11 @@
         <tr>
             <th>Email</th>
             <th>Name</th>
+            <th>Estado</th>
             <th>Editar</th>
             <th>Carros de compra</th>
-            <th>Borrar</th>
+            <th>Inhabilitar</th>
+            <th>Habilitar</th>
         </tr>
     </thead>
 
@@ -23,10 +25,19 @@
 
             <td>{{customer.email}}</td>
             <td>{{customer.name}}</td>
-            <td><button [routerLink]="['/customer-edit', customer.email]" class="btn btn-primary mb-2 btn-lg">editar</button></td>
-            <td><button [routerLink]="['/shopping-cart', customer.email]" class="btn btn-primary mb-2 btn-lg">carros de compra</button></td>
             <td>
-                <button (click)="delete(customer.email)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+                <div *ngIf="customer.enable=='Y'">Activo</div>
+                <div *ngIf="customer.enable=='N'">Inactivo</div>
+            </td>
+            <td><button [routerLink]="['/customer-edit', customer.email]"
+                    class="btn btn-primary mb-2 btn-lg">editar</button></td>
+            <td><button [routerLink]="['/shopping-cart', customer.email]" class="btn btn-primary mb-2 btn-lg">carros de
+                    compra</button></td>
+            <td>
+                <button (click)="inhabilitar(customer.email)" class="btn btn-primary mb-2 btn-lg">Inhabilitar</button>
+            </td>
+            <td>
+                <button (click)="habilitar(customer.email)" class="btn btn-primary mb-2 btn-lg">Habilitar</button>
             </td>
         </tr>
     </tbody>

@@ -9,38 +9,70 @@ import { PaymentMethodService } from 'src/app/service/payment-method.service';
 })
 export class PaymentMethodListComponent implements OnInit {
 
-  public titulo:string='lista de metodos de pago';
-  public showMsg:boolean=false;
-  public messages:string[]=[""];
-  public paymentMethods:PaymentMethod[];
+  public titulo: string = 'lista de metodos de pago';
+  public showMsg: boolean = false;
+  public messages: string[] = [""];
+  public paymentMethod: PaymentMethod;
+  public paymentMethods: PaymentMethod[];
 
-  constructor(public paymentMethodService:PaymentMethodService) { }
+  constructor(public paymentMethodService: PaymentMethodService) { }
 
   ngOnInit(): void {
     this.findAll();
   }
-  
-  findAll():void{
-    this.paymentMethodService.findAll().subscribe(data=>{
-      this.paymentMethods=data;
 
-    },error=>{
-      
+  findAll(): void {
+    this.paymentMethodService.findAll().subscribe(data => {
+      this.paymentMethods = data;
+
+    }, error => {
+
       console.error(error);
     });
   }
 
-  public delete(payId:number){
-    this.messages=[""]
-    this.paymentMethodService.delete(payId).subscribe(ok=>{
-      this.showMsg=true;
-      this.messages[0]="el paymentMethod se borro con exito";
+  public inhabilitar(payId: number) {
+    this.paymentMethodService.findById(payId).subscribe(data => {
+      this.paymentMethod = data;
+      this.paymentMethod.enable = "N"
+      this.paymentMethodService.update(this.paymentMethod).subscribe(ok => {
+        this.showMsg = true;
+        this.messages[0] = "el paymentMethod se inhabilito con exito";
+        this.findAll();
+
+      },err=>{
+        console.log(err)
+      })
+
+    })
+  }
+  public habilitar(payId: number) {
+    this.paymentMethodService.findById(payId).subscribe(data => {
+      this.paymentMethod = data;
+      this.paymentMethod.enable = "Y"
+      this.paymentMethodService.update(this.paymentMethod).subscribe(ok => {
+        this.showMsg = true;
+        this.messages[0] = "el paymentMethod se inhabilito con exito";
+        this.findAll();
+
+      },err=>{
+        console.log(err)
+      })
+
+    })
+  }
+
+  public delete(payId: number) {
+    this.messages = [""]
+    this.paymentMethodService.delete(payId).subscribe(ok => {
+      this.showMsg = true;
+      this.messages[0] = "el paymentMethod se borro con exito";
       this.findAll();
-    },err=>{
+    }, err => {
       console.log(err);
-      this.showMsg=true;
-      this.messages=err.error.error;
-      
+      this.showMsg = true;
+      this.messages = err.error.error;
+
     });
   }
 

@@ -6,9 +6,11 @@
             <th>proId</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Estado</th>
             <th>Image</th>
             <th>Editar</th>
-            <th>Borrar</th>
+            <th>Inhabilitar</th>
+            <th>Habilitar</th>
         </tr>
     </thead>
     
@@ -17,11 +19,20 @@
         <td>{{product.proId}}</td>
         <td>{{product.name}}</td>
         <td>{{product.price| currency: 'COP'}}</td>
+        <td>
+            <div *ngIf="product.enable=='Y'">Activo</div>
+            <div *ngIf="product.enable=='N'">Inactivo</div>
+        </td>
         <td><img src={{product.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
         <td>
             <button [routerLink]="['/product-edit', product.proId]" class="btn btn-primary mb-2 btn-lg">editar</button>
         </td>
-        <td><button (click)="delete(product.proId)" class="btn btn-primary mb-2 btn-lg">Borrar</button></td>
+        <td>
+            <button (click)="inhabilitar(product.proId)" class="btn btn-primary mb-2 btn-lg">Inhabilitar</button>
+        </td>
+        <td>
+            <button (click)="habilitar(product.proId)" class="btn btn-primary mb-2 btn-lg">Habilitar</button>
+        </td>
         
 
     </tr>

@@ -4,8 +4,10 @@
         <tr>
             <th>payId</th>
             <th>Name</th>
+            <th>Estado</th>
             <th>Editar</th>
-            <th>Borrar</th>
+            <th>Inhabilitar</th>
+            <th>Habilitar</th>
         </tr>
     </thead>
 
@@ -14,18 +16,26 @@
             <td>{{paymentMethod.payId}}</td>
             <td>{{paymentMethod.name}}</td>
             <td>
-                <button [routerLink]="['/payment-method-edit', paymentMethod.payId]" class="btn btn-primary mb-2 btn-lg">editar</button>
+                <div *ngIf="paymentMethod.enable=='Y'">Activo</div>
+                <div *ngIf="paymentMethod.enable=='N'">Inactivo</div>
             </td>
             <td>
-                <button (click)="delete(paymentMethod.payId)" class="btn btn-primary mb-2 btn-lg">Borrar</button>
+                <button [routerLink]="['/payment-method-edit', paymentMethod.payId]"
+                    class="btn btn-primary mb-2 btn-lg">editar</button>
             </td>
-            
-    
+            <td>
+                <button (click)="inhabilitar(paymentMethod.payId)"
+                    class="btn btn-primary mb-2 btn-lg">Inhabilitar</button>
+            </td>
+            <td>
+                <button (click)="habilitar(paymentMethod.payId)" class="btn btn-primary mb-2 btn-lg">Habilitar</button>
+            </td>
+
+
         </tr>
     </tbody>
-    
 
-    
+
+
 
 </table>
-
