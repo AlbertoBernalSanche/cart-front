@@ -68,10 +68,6 @@ export class RegisterComponent implements OnInit {
 
       }).catch(e => {
 
-        /*this.customerService.delete(this.email).subscribe(ok=>{
-
-          console.log("eliminacion de registro por fallo de firebase")
-        })*/
         console.log(e);
         this.showMsg = true;
         this.messages = e.error.error;
