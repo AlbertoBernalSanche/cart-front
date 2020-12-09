@@ -19,12 +19,12 @@
                 
             
                 <tbody>
-                    <tr *ngFor="let prod of products; let x = index">
-                        <td>{{shoppingProducts[x].productId}}</td>
-                        <td>{{prod.name}}</td>
-                        <td><img src={{prod.image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
-                        <td>{{shoppingProducts[x].quantity}}</td>
-                        <td>{{shoppingProducts[x].total | currency: 'COP'}}</td>
+                    <tr *ngFor="let shoppinProducts of shoppingProducts; let x = index">
+                        <td>{{shoppinProducts.productId}}</td>
+                        <td>{{products[x].name}}</td>
+                        <td><img src={{products[x].image}} alt="not found" class="img-thumbnail" width="100" height="100"></td>
+                        <td>{{shoppinProducts.quantity}}</td>
+                        <td>{{shoppinProducts.total | currency: 'COP'}}</td>
                     </tr>
                 </tbody>
                 

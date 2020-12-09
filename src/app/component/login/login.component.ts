@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
 
               } else {
                 console.log("error al validar el estado del usuario")
-                this.alertService.error("error al verificar las credenciales intentelo de nuevo");
+                this.alertService.error("Valide el usuario");
                 this.singOut();
               }
 
